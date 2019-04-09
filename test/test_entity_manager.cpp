@@ -3,7 +3,7 @@
 
 #include <entity_manager.h>
 
-BOOST_AUTO_TEST_CASE(constructor)
+BOOST_AUTO_TEST_CASE(manager_constructor)
 {
     esc::EntityManager manager;
 
@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE(create_multi_entity)
     BOOST_TEST(e1 != e2);
 }
 
-BOOST_AUTO_TEST_CASE(valid)
+BOOST_AUTO_TEST_CASE(valid_entity)
 {
     esc::EntityManager manager;
 
@@ -45,11 +45,21 @@ BOOST_AUTO_TEST_CASE(valid)
     BOOST_TEST(manager.valid(entity));
 }
 
-BOOST_AUTO_TEST_CASE(valid_not_created)
+BOOST_AUTO_TEST_CASE(valid_entity_not_created)
 {
     esc::EntityManager manager;
 
     esc::EntityManager::EntityId entity{};
+
+    BOOST_TEST(!manager.valid(entity));
+}
+
+BOOST_AUTO_TEST_CASE(destroy_entity)
+{
+    esc::EntityManager manager;
+
+    auto entity = manager.create();
+    manager.destroy(entity);
 
     BOOST_TEST(!manager.valid(entity));
 }

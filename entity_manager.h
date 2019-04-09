@@ -39,6 +39,15 @@ public:
    */
   bool valid(const EntityId& entity) const noexcept;
 
+  /**
+   * @brief Destroy entity
+   * 
+   * @param entity Entity to destroy
+   * 
+   * After this function entity is not valid any more
+   */
+  void destroy(const EntityId& entity);
+
 private:
 
   /**
