@@ -44,3 +44,12 @@ BOOST_AUTO_TEST_CASE(valid)
 
     BOOST_TEST(manager.valid(entity));
 }
+
+BOOST_AUTO_TEST_CASE(valid_not_created)
+{
+    esc::EntityManager manager;
+
+    esc::EntityManager::EntityId entity{};
+
+    BOOST_TEST(!manager.valid(entity));
+}

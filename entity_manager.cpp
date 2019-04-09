@@ -7,7 +7,7 @@ esc::EntityManager::EntityId esc::EntityManager::create()
     return entity;
 }
 
-bool esc::EntityManager::valid(const esc::EntityManager::EntityId& entiry) const noexcept
+bool esc::EntityManager::valid(const esc::EntityManager::EntityId& entity) const noexcept
 {
-    return true;
+    return entity < _entities.size() && _entities[entity] == entity;
 }
