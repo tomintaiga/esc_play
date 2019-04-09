@@ -2,7 +2,7 @@
 
 esc::EntityManager::EntityId esc::EntityManager::create()
 {
-    EntityId id{};
+    EntityId entity = _entities.emplace_back(EntityId(_entities.size()));
 
-    return id;
+    return entity;
 }

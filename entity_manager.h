@@ -7,6 +7,7 @@
 #define ENTITY_MANAGER_H
 
 #include <cstdint>
+#include <vector>
 
 namespace esc
 {
@@ -16,18 +17,25 @@ namespace esc
  */
 class EntityManager
 {
-  public:
-    /**
-     * @brief Type for Entity ID
-     */
-    using EntityId = std::uint64_t;
+public:
+  /**
+   * @brief Type for Entity ID
+   */
+  using EntityId = std::uint64_t;
 
-    /**
-     * @brief Create new Entity
-     * 
-     * @return ID of new entity
-     */
-    EntityId create();
+  /**
+   * @brief Create new Entity
+   * 
+   * @return ID of new entity
+   */
+  EntityId create();
+
+private:
+
+  /**
+   * @brief Vector of alive entities
+   */
+  std::vector<EntityId> _entities;
 };
 
 } // namespace esc

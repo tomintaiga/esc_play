@@ -25,3 +25,13 @@ BOOST_AUTO_TEST_CASE(create_entity)
 
     BOOST_TEST(true);
 }
+
+BOOST_AUTO_TEST_CASE(create_multi_entity)
+{
+    esc::EntityManager manager;
+
+    auto e1 = manager.create();
+    auto e2 = manager.create();
+
+    BOOST_TEST(e1 != e2);
+}
