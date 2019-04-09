@@ -21,6 +21,13 @@ class EntityManager
      * @brief Type for Entity ID
      */
     using EntityId = std::uint64_t;
+
+    /**
+     * @brief Create new Entity
+     * 
+     * @return ID of new entity
+     */
+    EntityId create();
 };
 
 } // namespace esc

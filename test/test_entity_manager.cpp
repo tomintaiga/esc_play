@@ -16,3 +16,12 @@ BOOST_AUTO_TEST_CASE(entity_type)
 
     BOOST_TEST(true);
 }
+
+BOOST_AUTO_TEST_CASE(create_entity)
+{
+    esc::EntityManager manager;
+
+    auto entity = manager.create();
+
+    BOOST_TEST(true);
+}
