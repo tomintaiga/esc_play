@@ -9,3 +9,10 @@ BOOST_AUTO_TEST_CASE(constructor)
 
     BOOST_TEST(true);
 }
+
+BOOST_AUTO_TEST_CASE(entity_type)
+{
+    esc::EntityManager::EntityId id;
+
+    BOOST_TEST(true);
+}

@@ -1,18 +1,26 @@
-#ifndef ENTITY_MANAGER_H
-#define ENTITY_MANAGER_H
-
 /**
  * @brief Header for esc::EntityManager class
  * @file entity_manager.h
  */
 
-namespace esc{
+#ifndef ENTITY_MANAGER_H
+#define ENTITY_MANAGER_H
+
+#include <cstdint>
+
+namespace esc
+{
 
 /**
  * @brief Manager for entity manipulations
  */
-class EntityManager {
-
+class EntityManager
+{
+  public:
+    /**
+     * @brief Type for Entity ID
+     */
+    using EntityId = std::uint64_t;
 };
 
 } // namespace esc
