@@ -30,6 +30,15 @@ public:
    */
   EntityId create();
 
+  /**
+   * @brief Check if entity is valid
+   * 
+   * @param entity Entity to check
+   * @return true If entity is valid
+   * @return false If entity is invalid
+   */
+  bool valid(const EntityId& entity) const noexcept;
+
 private:
 
   /**

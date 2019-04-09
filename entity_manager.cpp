@@ -6,3 +6,8 @@ esc::EntityManager::EntityId esc::EntityManager::create()
 
     return entity;
 }
+
+bool esc::EntityManager::valid(const esc::EntityManager::EntityId& entiry) const noexcept
+{
+    return true;
+}
