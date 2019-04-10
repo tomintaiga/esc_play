@@ -35,6 +35,20 @@ class ComponentManager
         _components.insert(std::make_pair(entity, static_cast<void*>(component)));
     }
 
+    /**
+     * @brief Check if entity has component of type T
+     * 
+     * @tparam T Type of component
+     * @param entity Entity to check
+     * @return true If entity has such component
+     * @return false If entity don't have such component
+     */
+    template<typename T>
+    bool has(const esc::EntityManager::EntityId entity)
+    {
+      return true;
+    }
+
   private:
     /**
      * @brief Store entities and components

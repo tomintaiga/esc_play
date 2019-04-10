@@ -19,7 +19,6 @@ struct Position
 
 BOOST_AUTO_TEST_CASE(component)
 {
-
     esc::ComponentManager components;
     esc::EntityManager entities;
 
@@ -28,4 +27,16 @@ BOOST_AUTO_TEST_CASE(component)
     components.add<Position>(entity, 10, 15);
 
     BOOST_TEST(true);
+}
+
+BOOST_AUTO_TEST_CASE(check_for_component)
+{
+    esc::ComponentManager components;
+    esc::EntityManager entities;
+
+    esc::EntityManager::EntityId entity = entities.create();
+
+    components.add<Position>(entity, 10, 15);
+
+    BOOST_TEST(components.has<Position>(entity));
 }
