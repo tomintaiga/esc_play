@@ -55,7 +55,7 @@ public:
      * @param entity Entity
      * @return std::pair<ComponentsStore::iterator, ComponentsStore::iterator> Range for found items;
      */
-    inline std::pair<ComponentsStore::iterator, ComponentsStore::iterator> find(esc::EntityManager::EntityId entity) { return _components.equal_range(entity); }
+    inline auto find(esc::EntityManager::EntityId entity) { return _components.equal_range(entity); }
 
 private:
     ComponentsStore _components;
