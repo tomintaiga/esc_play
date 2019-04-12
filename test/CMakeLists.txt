@@ -1,3 +1,7 @@
 add_executable(test_entity_manager test_entity_manager.cpp)
 target_link_libraries(test_entity_manager ecs ${Boost_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 add_test(EntityManager test_entity_manager)
+
+add_executable(test_position_component test_position_component.cpp)
+target_link_libraries(test_position_component ecs ${Boost_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+add_test(PositionComponent test_position_component)
