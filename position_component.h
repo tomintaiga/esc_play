@@ -32,6 +32,7 @@ struct Position
 class PositionManager
 {
 public:
+    using ComponentsStore = std::map<esc::EntityManager::EntityId, Position*>;
     /**
      * @brief Add component for entity
      * 
@@ -46,10 +47,14 @@ public:
      * @return true If manager has such entity
      * @return false If manager don't have such entity
      */
-    bool has(esc::EntityManager::EntityId entity) const;
+    bool has(esc::EntityManager::EntityId entity) const;        
+
+    inline ComponentsStore::iterator end() { return _components.end(); }
+
+    inline ComponentsStore::iterator find(esc::EntityManager::EntityId entity) { return _components.find(entity); }
 
 private:
-    std::map<esc::EntityManager::EntityId, Position> _components;
+    ComponentsStore _components;
 };
 
 } // namespace Components

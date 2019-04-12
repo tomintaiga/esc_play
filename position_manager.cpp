@@ -2,7 +2,7 @@
 
 void esc::Components::PositionManager::add(esc::EntityManager::EntityId entity)
 {
-    _components.emplace(entity, Position());
+    _components.emplace(entity, new Position());
 }
 
 bool esc::Components::PositionManager::has(esc::EntityManager::EntityId entity) const

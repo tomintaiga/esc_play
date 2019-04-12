@@ -44,3 +44,38 @@ BOOST_AUTO_TEST_CASE(position_manager_check_for_entity)
     BOOST_TEST(p_manager.has(e1));
     BOOST_TEST(!p_manager.has(e2));
 }
+
+BOOST_AUTO_TEST_CASE(position_manager_find_entity)
+{
+    esc::Components::PositionManager p_manager;
+    esc::EntityManager e_manager;
+
+    auto e1 = e_manager.create();
+    auto e2 = e_manager.create();
+
+    p_manager.add(e1);
+
+    auto find = p_manager.find(e1);
+
+    bool t1 = find != p_manager.end();
+
+    BOOST_TEST(t1);
+    BOOST_TEST((*find).first == e1);
+}
+
+BOOST_AUTO_TEST_CASE(position_manager_cant_find_entity)
+{
+    esc::Components::PositionManager p_manager;
+    esc::EntityManager e_manager;
+
+    auto e1 = e_manager.create();
+    auto e2 = e_manager.create();
+
+    p_manager.add(e1);
+
+    auto find = p_manager.find(e2);
+
+    bool t1 = find == p_manager.end();
+
+    BOOST_TEST(t1);
+}
