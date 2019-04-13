@@ -11,6 +11,12 @@ namespace esc
 namespace Components
 {
 
+/**
+ * @brief Universal component manager
+ * 
+ * @tparam T Component structure or class type
+ */
+template<typename T>
 class ComponentManager
 {
 
