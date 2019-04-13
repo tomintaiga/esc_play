@@ -112,3 +112,24 @@ BOOST_AUTO_TEST_CASE(position_manager_find_many)
 
     BOOST_TEST(std::distance(find.first, find.second) == good_count);
 }
+
+BOOST_AUTO_TEST_CASE(position_can_change)
+{
+    esc::Components::PositionManager p_manager;
+    esc::EntityManager e_manager;
+
+    auto entity = e_manager.create();
+    p_manager.add(entity);
+
+    auto find = p_manager.find(entity);
+
+    (*find.first).second->x = 15;
+    (*find.first).second->y = 27;
+    (*find.first).second->z = -4;
+
+    auto find2 = p_manager.find(entity);
+
+    BOOST_TEST((*find2.first).second->x == 15);
+    BOOST_TEST((*find2.first).second->y == 27);
+    BOOST_TEST((*find2.first).second->z == -4);
+}
