@@ -82,3 +82,50 @@ BOOST_AUTO_TEST_CASE(component_manager_find_single_entity)
 
     BOOST_TEST(std::distance(find.first, find.second) == 1);
 }
+
+BOOST_AUTO_TEST_CASE(component_manager_cant_find_entity)
+{
+    esc::Components::ComponentManager<TestPosition> c_manager;
+    esc::EntityManager e_manager;
+
+    auto e1 = e_manager.create();
+    auto e2 = e_manager.create();
+    c_manager.add(e1);
+
+    auto find = c_manager.find(e2);
+    BOOST_TEST(std::distance(find.first, find.second) == 0);
+}
+
+BOOST_AUTO_TEST_CASE(component_manager_can_find_many_components)
+{
+    esc::Components::ComponentManager<TestPosition> c_manager;
+    esc::EntityManager e_manager;
+
+    auto control_entity = e_manager.create();
+
+    int good_count = 0;
+    for(int i=0; i< 50; i++)   
+    {
+        auto cur = e_manager.create();
+        for(int j=0; j<10; j++)
+        {
+            c_manager.add(cur);
+
+            if(j%2 == 0)
+            {
+                c_manager.add(control_entity);
+                good_count++;
+            }
+        }
+    }
+
+    BOOST_TEST(good_count == 250);
+
+    //Now check for control entity
+    BOOST_TEST(c_manager.has(control_entity));
+
+    //Let's count control components
+    auto find = c_manager.find(control_entity);
+
+    BOOST_TEST(std::distance(find.first, find.second) == good_count);
+}
