@@ -55,3 +55,17 @@ BOOST_AUTO_TEST_CASE(component_manager_add_entity_with_args)
     BOOST_TEST((*component).second.y == 20);
     BOOST_TEST((*component).second.z == 30);
 }
+
+BOOST_AUTO_TEST_CASE(component_manager_find)
+{
+    esc::Components::ComponentManager<TestPosition> c_manager;
+    esc::EntityManager e_manager;
+
+    auto e1 = e_manager.create();
+    auto e2 = e_manager.create();
+
+    auto component = c_manager.add(e1);
+
+    BOOST_TEST(c_manager.has(e1));
+    BOOST_TEST(!c_manager.has(e2));
+}

@@ -50,6 +50,18 @@ public:
         return _components.insert({entity, T(args...)});
     }
 
+    /**
+     * @brief Check if ComponentManager has components for entity
+     * 
+     * @param entity Entity to check
+     * @return true If ComponentManager has at least one component for entity
+     * @return false If ComponentManager don't have any components for that entity
+     */
+    bool has(esc::EntityManager::EntityId entity) const
+    {
+        return _components.find(entity) != _components.end();
+    }
+
 private:
     ComponentsStore _components;
 };
