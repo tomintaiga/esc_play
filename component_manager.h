@@ -68,7 +68,7 @@ public:
      * @param entity Entity to find components for
      * @return std::pair<ComponentsStore::iterator, ComponentsStore::iterator> Found components
      */
-    auto find(esc::EntityManager::EntityId entity) const
+    auto find(esc::EntityManager::EntityId entity)
     {
         return _components.equal_range(entity);
     }
