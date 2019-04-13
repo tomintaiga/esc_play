@@ -133,3 +133,22 @@ BOOST_AUTO_TEST_CASE(position_can_change)
     BOOST_TEST((*find2.first).second->y == 27);
     BOOST_TEST((*find2.first).second->z == -4);
 }
+
+BOOST_AUTO_TEST_CASE(add_position_return_value)
+{
+    esc::Components::PositionManager p_manager;
+    esc::EntityManager e_manager;
+
+    auto entity = e_manager.create();
+    auto position = p_manager.add(entity);
+
+    (*position).second->x = 13;
+    (*position).second->y = 44;
+    (*position).second->z = 8;
+
+    auto find2 = p_manager.find(entity);
+
+    BOOST_TEST((*find2.first).second->x == 13);
+    BOOST_TEST((*find2.first).second->y == 44);
+    BOOST_TEST((*find2.first).second->z == 8);
+}

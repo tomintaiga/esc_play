@@ -1,8 +1,8 @@
 #include "position_component.h"
 
-void esc::Components::PositionManager::add(esc::EntityManager::EntityId entity)
+esc::Components::PositionManager::ComponentsStore::iterator esc::Components::PositionManager::add(esc::EntityManager::EntityId entity)
 {
-    _components.insert({entity, new Position()});
+    return _components.insert({entity, new Position()});
 }
 
 bool esc::Components::PositionManager::has(esc::EntityManager::EntityId entity) const

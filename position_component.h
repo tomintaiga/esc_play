@@ -37,8 +37,9 @@ public:
      * @brief Add component for entity
      * 
      * @param entity Entity to add
+     * @return ComponentsStore::iterator for created component
      */
-    void add(esc::EntityManager::EntityId entity);
+    ComponentsStore::iterator add(esc::EntityManager::EntityId entity);
 
     /**
      * @brief Check if manager has entity
