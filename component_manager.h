@@ -28,12 +28,26 @@ public:
     /**
      * @brief Add component to entity
      * 
-     * @param entity EntityId to add component
+     * @param entity Entity to add component to
      * @return ComponentsStore::iterator Iterator for new component
      */
     typename ComponentsStore::iterator add(esc::EntityManager::EntityId entity)
     {
         return _components.insert({entity, T()});
+    }
+
+    /**
+     * @brief Add component to entity with arguments
+     * 
+     * @tparam ARGS Types of arguments
+     * @param entity Entity to add component to
+     * @param args Arguments for component constructor
+     * @return ComponentsStore::iterator Iterator fow new component
+     */
+    template<typename ...ARGS>
+    typename ComponentsStore::iterator add(esc::EntityManager::EntityId entity, ARGS... args)
+    {
+        return _components.insert({entity, T(args...)});
     }
 
 private:

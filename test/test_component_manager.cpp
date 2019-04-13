@@ -32,3 +32,26 @@ BOOST_AUTO_TEST_CASE(component_manager_add_entity)
     BOOST_TEST((*component).second.y == 0);
     BOOST_TEST((*component).second.z == 0);
 }
+
+struct TestPositionArgs
+{
+    int x;
+    int y;
+    int z;
+    TestPositionArgs() = delete;
+    TestPositionArgs(int X, int Y, int Z): x{X}, y{Y}, z{Z} {}
+};
+
+BOOST_AUTO_TEST_CASE(component_manager_add_entity_with_args)
+{
+    esc::Components::ComponentManager<TestPositionArgs> c_manager;
+    esc::EntityManager e_manager;
+
+    auto e1 = e_manager.create();
+
+    auto component = c_manager.add(e1, 10, 20, 30);
+
+    BOOST_TEST((*component).second.x == 10);
+    BOOST_TEST((*component).second.y == 20);
+    BOOST_TEST((*component).second.z == 30);
+}
