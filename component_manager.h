@@ -62,6 +62,17 @@ public:
         return _components.find(entity) != _components.end();
     }
 
+    /**
+     * @brief Find all Components in this ComponentManager for entity
+     * 
+     * @param entity Entity to find components for
+     * @return std::pair<ComponentsStore::iterator, ComponentsStore::iterator> Found components
+     */
+    auto find(esc::EntityManager::EntityId entity) const
+    {
+        return _components.equal_range(entity);
+    }
+
 private:
     ComponentsStore _components;
 };

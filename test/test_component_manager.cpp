@@ -56,7 +56,7 @@ BOOST_AUTO_TEST_CASE(component_manager_add_entity_with_args)
     BOOST_TEST((*component).second.z == 30);
 }
 
-BOOST_AUTO_TEST_CASE(component_manager_find)
+BOOST_AUTO_TEST_CASE(component_manager_has)
 {
     esc::Components::ComponentManager<TestPosition> c_manager;
     esc::EntityManager e_manager;
@@ -68,4 +68,17 @@ BOOST_AUTO_TEST_CASE(component_manager_find)
 
     BOOST_TEST(c_manager.has(e1));
     BOOST_TEST(!c_manager.has(e2));
+}
+
+BOOST_AUTO_TEST_CASE(component_manager_find_single_entity)
+{
+    esc::Components::ComponentManager<TestPosition> c_manager;
+    esc::EntityManager e_manager;
+
+    auto e1 = e_manager.create();
+    c_manager.add(e1);
+
+    auto find = c_manager.find(e1);
+
+    BOOST_TEST(std::distance(find.first, find.second) == 1);
 }
