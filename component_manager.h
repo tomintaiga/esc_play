@@ -8,6 +8,8 @@
 
 #include "entity_manager.h"
 #include <map>
+#include <type_traits>
+#include <memory>
 
 namespace esc
 {
@@ -18,26 +20,20 @@ namespace Components
  * @brief Universal component manager
  * 
  * @tparam T Component structure or class type
+ * @tparam std::enable_if<! std::is_pointer<T>::value >::type Check that T is not a pointer
  */
-template <typename T>
+
+template <typename T, class = typename std::enable_if< !std::is_pointer<T>::value >::type >
 class ComponentManager
 {
 public:
-    using ComponentsStore = std::multimap<esc::EntityManager::EntityId, T>;
 
-    /**
-     * @brief Add component to entity
-     * 
-     * @param entity Entity to add component to
-     * @return ComponentsStore::iterator Iterator for new component
-     */
-    typename ComponentsStore::iterator add(esc::EntityManager::EntityId entity)
-    {
-        return _components.insert({entity, T()});
-    }
+    using ComponentsStore = std::multimap<esc::EntityManager::EntityId, std::unique_ptr<T> >;
 
     /**
      * @brief Add component to entity with arguments
+     * 
+     * This one is used when T is not a pointer
      * 
      * @tparam ARGS Types of arguments
      * @param entity Entity to add component to
@@ -47,8 +43,8 @@ public:
     template<typename ...ARGS>
     typename ComponentsStore::iterator add(esc::EntityManager::EntityId entity, ARGS... args)
     {
-        return _components.insert({entity, T(args...)});
-    }
+        return _components.insert({entity, std::make_unique<T>(args...)});
+    }  
 
     /**
      * @brief Check if ComponentManager has components for entity
@@ -76,6 +72,7 @@ public:
 private:
     ComponentsStore _components;
 };
+
 
 } // namespace Components
 } // namespace esc

@@ -28,9 +28,9 @@ BOOST_AUTO_TEST_CASE(component_manager_add_entity)
 
     auto component = c_manager.add(e1);
 
-    BOOST_TEST((*component).second.x == 0);
-    BOOST_TEST((*component).second.y == 0);
-    BOOST_TEST((*component).second.z == 0);
+    BOOST_TEST((*component).second->x == 0);
+    BOOST_TEST((*component).second->y == 0);
+    BOOST_TEST((*component).second->z == 0);
 }
 
 struct TestPositionArgs
@@ -51,9 +51,9 @@ BOOST_AUTO_TEST_CASE(component_manager_add_entity_with_args)
 
     auto component = c_manager.add(e1, 10, 20, 30);
 
-    BOOST_TEST((*component).second.x == 10);
-    BOOST_TEST((*component).second.y == 20);
-    BOOST_TEST((*component).second.z == 30);
+    BOOST_TEST((*component).second->x == 10);
+    BOOST_TEST((*component).second->y == 20);
+    BOOST_TEST((*component).second->z == 30);
 }
 
 BOOST_AUTO_TEST_CASE(component_manager_has)
