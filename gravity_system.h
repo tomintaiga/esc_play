@@ -20,6 +20,9 @@ namespace Systems
 class Gravity
 {
 public:
+
+    Gravity();
+
     /**
      * @brief Set Position manager
      * 
@@ -40,6 +43,14 @@ public:
      * @param e_manager Pointer to EntityManager class
      */
     inline void set(esc::EntityManager *e_manager) { _entity_manager = e_manager; }
+
+    /**
+     * @brief Initialize system class
+     * 
+     * @return true If system is ready to work
+     * @return false Is system is not ready to work
+     */
+    bool init();
 
 private:
     esc::Components::PositionManager *_position_manager;

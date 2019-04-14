@@ -39,3 +39,17 @@ BOOST_AUTO_TEST_CASE(gravity_system_set_entity_manager)
 
     BOOST_TEST(true);
 }
+
+BOOST_AUTO_TEST_CASE(gravity_system_init)
+{
+    esc::Systems::Gravity system;
+    esc::Components::PositionManager p_manager;
+    esc::Components::ForceManager f_manager;
+    esc::EntityManager e_manager;
+
+    system.set(&p_manager);
+    system.set(&f_manager);
+    system.set(&e_manager);
+
+    BOOST_TEST(system.init());
+}
