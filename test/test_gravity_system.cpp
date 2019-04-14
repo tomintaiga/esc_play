@@ -19,3 +19,13 @@ BOOST_AUTO_TEST_CASE(gravity_system_set_position_manager)
 
     BOOST_TEST(true);
 }
+
+BOOST_AUTO_TEST_CASE(gravity_system_set_force_manager)
+{
+    esc::Systems::Gravity system;
+    esc::Components::ForceManager f_manager;
+
+    system.set(&f_manager);
+
+    BOOST_TEST(true);
+}
