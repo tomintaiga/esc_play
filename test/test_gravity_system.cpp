@@ -120,3 +120,36 @@ BOOST_AUTO_TEST_CASE(gravity_system_free_fall)
     //Now check result
     BOOST_TEST(position->second->y == 95.1, boost::test_tools::tolerance(0.001));
 }
+
+BOOST_AUTO_TEST_CASE(gravity_system_free_fall_for_alive_only)
+{
+    /*
+     * Here we check that only "alive" entities are foling
+     */
+
+    esc::Systems::Gravity system;
+    esc::Components::PositionManager p_manager;
+    esc::Components::ForceManager f_manager;
+    esc::EntityManager e_manager;
+
+    system.set(&p_manager);
+    system.set(&f_manager);
+    system.set(&e_manager);
+
+    system.init();
+
+    auto e1 = e_manager.create();
+    auto p1 = p_manager.add(e1);
+
+    auto e2 = e_manager.create();
+    auto p2 = p_manager.add(e2);
+
+    p1->second->y = 100;
+    p2->second->y = 100;
+
+    e_manager.destroy(e2);
+
+    system.update(std::chrono::seconds(1));
+    BOOST_TEST(p1->second->y == 95.1, boost::test_tools::tolerance(0.001));
+    BOOST_TEST(p2->second->y == 100, boost::test_tools::tolerance(0.001));
+}

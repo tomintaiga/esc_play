@@ -27,6 +27,10 @@ void esc::Systems::Gravity::update(std::chrono::seconds dt)
     // We need to process all positions
     for(auto it = _position_manager->begin(); it != _position_manager->end(); ++it)    
     {
+        // Update only "alive" entities
+        if(!_entity_manager->valid(it->first))
+            continue;
+            
         it->second->y = it->second->y - (G*dt.count()*dt.count())/2;
     }
 }
