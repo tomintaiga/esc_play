@@ -9,3 +9,13 @@ BOOST_AUTO_TEST_CASE(gravity_system_constructor)
 
     BOOST_TEST(true);
 }
+
+BOOST_AUTO_TEST_CASE(gravity_system_set_position_manager)
+{
+    esc::Systems::Gravity system;
+    esc::Components::PositionManager p_manager;
+
+    system.set(&p_manager);
+
+    BOOST_TEST(true);
+}
