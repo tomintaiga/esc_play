@@ -34,9 +34,17 @@ public:
      */
     inline void set(esc::Components::ForceManager *f_manager) { _force_maneger = f_manager; }
 
+    /**
+     * @brief Set Entity manager
+     * 
+     * @param e_manager Pointer to EntityManager class
+     */
+    inline void set(esc::EntityManager *e_manager) { _entity_manager = e_manager; }
+
 private:
     esc::Components::PositionManager *_position_manager;
     esc::Components::ForceManager *_force_maneger;
+    esc::EntityManager *_entity_manager;
 };
 
 } //namespace Systems
