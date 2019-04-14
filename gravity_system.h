@@ -60,6 +60,12 @@ public:
      */
     void update(std::chrono::seconds dt);
 
+    /**
+     * @brief Acceleration of gravity
+     * @see https://en.wikipedia.org/wiki/Standard_gravity
+     */
+    static const double G;
+
 private:
     esc::Components::PositionManager *_position_manager;
     esc::Components::ForceManager *_force_maneger;

@@ -1,6 +1,8 @@
 
 #include "gravity_system.h"
 
+const double esc::Systems::Gravity::G = 9.8;
+
 esc::Systems::Gravity::Gravity(): _position_manager{}, _force_maneger{}, _entity_manager{}
 {
 
@@ -22,5 +24,9 @@ bool esc::Systems::Gravity::init()
 
 void esc::Systems::Gravity::update(std::chrono::seconds dt)
 {
-        
+    // We need to process all positions
+    for(auto it = _position_manager->begin(); it != _position_manager->end(); ++it)    
+    {
+        it->second->y = it->second->y - (G*dt.count()*dt.count())/2;
+    }
 }

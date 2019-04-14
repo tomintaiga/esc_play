@@ -17,8 +17,8 @@ namespace Components
  */
 struct Force
 {
-    double angle; ///< Angle of force vector
-    double radius; ///< Size of force vector
+    float angle;         ///< Angle of force vector
+    unsigned int radius; ///< Size of force vector
 };
 
 /**

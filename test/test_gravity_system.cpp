@@ -90,8 +90,12 @@ BOOST_AUTO_TEST_CASE(gravity_system_init_should_fail_if_no_entity_manager)
     BOOST_TEST(!system.init());
 }
 
-BOOST_AUTO_TEST_CASE(gravity_system_update)
+BOOST_AUTO_TEST_CASE(gravity_system_free_fall)
 {
+    /*
+     * Here we test that entyty can fall without start speed
+     * with start position
+     */
     esc::Systems::Gravity system;
     esc::Components::PositionManager p_manager;
     esc::Components::ForceManager f_manager;
@@ -114,5 +118,5 @@ BOOST_AUTO_TEST_CASE(gravity_system_update)
     system.update(std::chrono::seconds(1));
 
     //Now check result
-    BOOST_TEST(position->second->y == 95.1);
+    BOOST_TEST(position->second->y == 95.1, boost::test_tools::tolerance(0.001));
 }
