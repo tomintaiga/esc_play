@@ -8,6 +8,7 @@
 
 #include "position_component.h"
 #include "force_component.h"
+#include <chrono>
 
 namespace esc
 {
@@ -51,6 +52,13 @@ public:
      * @return false Is system is not ready to work
      */
     bool init();
+
+    /**
+     * @brief Update entyties positions and forces
+     * 
+     * @param dt Time interval
+     */
+    void update(std::chrono::seconds dt);
 
 private:
     esc::Components::PositionManager *_position_manager;

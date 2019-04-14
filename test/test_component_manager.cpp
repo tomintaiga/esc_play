@@ -129,3 +129,26 @@ BOOST_AUTO_TEST_CASE(component_manager_can_find_many_components)
 
     BOOST_TEST(std::distance(find.first, find.second) == good_count);
 }
+
+BOOST_AUTO_TEST_CASE(component_manager_iteration)
+{
+    esc::Components::ComponentManager<TestPosition> c_manager;
+    esc::EntityManager e_manager;
+
+    int count = 0;
+    for(int i=0; i< 50; i++)   
+    {
+        auto cur = e_manager.create();
+        for(int j=0; j<10; j++)
+        {
+            c_manager.add(cur);
+            count++;;
+        }
+    }
+
+    int test_count = 0;
+    for(esc::Components::ComponentManager<TestPosition>::ComponentsStore::iterator it = c_manager.begin(); it!= c_manager.end(); ++it)
+        test_count++;
+
+    BOOST_TEST(test_count == count);
+}
