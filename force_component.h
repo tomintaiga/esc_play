@@ -17,8 +17,12 @@ namespace Components
  */
 struct Force
 {
-    float angle;         ///< Angle of force vector
-    unsigned int radius; ///< Size of force vector
+    float x; /// X Vector component
+    float y; /// Y Vector component
+    float z; /// Z Vector component
+
+    Force(): x{}, y{}, z{} {}
+    Force(float X, float Y, float Z): x{X}, y{Y}, z{Z}{}
 };
 
 /**

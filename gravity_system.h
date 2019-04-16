@@ -22,6 +22,9 @@ class Gravity
 {
 public:
 
+    /**
+     * @brief Default constructor
+     */
     Gravity();
 
     /**

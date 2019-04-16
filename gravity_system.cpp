@@ -30,7 +30,18 @@ void esc::Systems::Gravity::update(std::chrono::seconds dt)
         // Update only "alive" entities
         if(!_entity_manager->valid(it->first))
             continue;
-            
-        it->second->y = it->second->y - (G*dt.count()*dt.count())/2;
+
+        // Check if entity has forces
+        if(!_force_maneger->has(it->first))
+            _force_maneger->add(it->first, 0, 0, -G);
+        
+        // Add all forces to current position
+        auto forces = _force_maneger->find(it->first);
+        for(auto fit = forces.first; fit != forces.second; ++fit)
+        {
+            it->second->x += (fit->second->x * dt.count() * dt.count())/2;
+            it->second->y += (fit->second->y * dt.count() * dt.count())/2;
+            it->second->z += (fit->second->z * dt.count() * dt.count())/2;
+        }
     }
 }
