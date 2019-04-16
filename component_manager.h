@@ -69,6 +69,20 @@ public:
         return _components.equal_range(entity);
     }
 
+    /**
+     * @brief Get begin iterator for internal store
+     * 
+     * @return ComponentsStore::iterator Begin iterator for internal store
+     */
+    inline typename ComponentsStore::iterator begin() { return _components.begin(); }
+
+    /**
+     * @brief Get end iterator for internal store
+     * 
+     * @return ComponentsStore::iterator End iterator for internal store
+     */
+    inline typename ComponentsStore::iterator end() { return _components.end(); }
+
 private:
     ComponentsStore _components;
 };

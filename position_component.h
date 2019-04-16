@@ -18,9 +18,9 @@ namespace Components
  */
 struct Position
 {
-    int x;
-    int y;
-    int z;
+    float x;
+    float y;
+    float z;
 
     Position() : x{}, y{}, z{} {}
 };
