@@ -6,9 +6,9 @@
 #ifndef GRAVITY_SYSTEM_H
 #define GRAVITY_SYSTEM_H
 
+#include "abstract_system.h"
 #include "position_component.h"
 #include "force_component.h"
-#include <chrono>
 
 namespace esc
 {
@@ -18,7 +18,7 @@ namespace Systems
 /**
  * @brief System for gravity simulation
  */
-class Gravity
+class Gravity: public AbstractSystem
 {
 public:
 
@@ -26,6 +26,8 @@ public:
      * @brief Default constructor
      */
     Gravity();
+
+    virtual ~Gravity(){};
 
     /**
      * @brief Set Position manager
@@ -54,14 +56,14 @@ public:
      * @return true If system is ready to work
      * @return false Is system is not ready to work
      */
-    bool init();
+    virtual bool init() override;
 
     /**
      * @brief Update entyties positions and forces
      * 
      * @param dt Time interval
      */
-    void update(std::chrono::seconds dt);
+    virtual void update(std::chrono::milliseconds dt) override;
 
     /**
      * @brief Acceleration of gravity

@@ -115,7 +115,7 @@ BOOST_AUTO_TEST_CASE(gravity_system_free_fall)
 
 
     //Now let's update gravity for 1 second
-    system.update(std::chrono::seconds(1));
+    system.update(std::chrono::milliseconds(1000));
 
     //Now check result
     BOOST_TEST(position->second->z == 95.1, boost::test_tools::tolerance(0.001));
@@ -149,7 +149,7 @@ BOOST_AUTO_TEST_CASE(gravity_system_free_fall_for_alive_only)
 
     e_manager.destroy(e2);
 
-    system.update(std::chrono::seconds(1));
+    system.update(std::chrono::milliseconds(1000));
     BOOST_TEST(p1->second->z == 95.1, boost::test_tools::tolerance(0.001));
     BOOST_TEST(p2->second->z == 100, boost::test_tools::tolerance(0.001));
 }
@@ -172,7 +172,7 @@ BOOST_AUTO_TEST_CASE(gravity_system_add_force)
 
     p1->second->y = 100;
 
-    system.update(std::chrono::seconds(1));
+    system.update(std::chrono::milliseconds(1000));
 
     BOOST_TEST(f_manager.has(e1));
 

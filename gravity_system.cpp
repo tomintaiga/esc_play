@@ -3,7 +3,7 @@
 
 const double esc::Systems::Gravity::G = 9.8;
 
-esc::Systems::Gravity::Gravity(): _position_manager{}, _force_maneger{}, _entity_manager{}
+esc::Systems::Gravity::Gravity(): AbstractSystem(), _position_manager{}, _force_maneger{}, _entity_manager{}
 {
 
 }
@@ -22,8 +22,10 @@ bool esc::Systems::Gravity::init()
     return true;
 }
 
-void esc::Systems::Gravity::update(std::chrono::seconds dt)
+void esc::Systems::Gravity::update(std::chrono::milliseconds dt)
 {
+    auto seconds = dt.count() / 1000;
+    auto time = seconds*seconds;
     // We need to process all positions
     for(auto it = _position_manager->begin(); it != _position_manager->end(); ++it)    
     {
@@ -39,9 +41,9 @@ void esc::Systems::Gravity::update(std::chrono::seconds dt)
         auto forces = _force_maneger->find(it->first);
         for(auto fit = forces.first; fit != forces.second; ++fit)
         {
-            it->second->x += (fit->second->x * dt.count() * dt.count())/2;
-            it->second->y += (fit->second->y * dt.count() * dt.count())/2;
-            it->second->z += (fit->second->z * dt.count() * dt.count())/2;
+            it->second->x += (fit->second->x * time)/2;
+            it->second->y += (fit->second->y * time)/2;
+            it->second->z += (fit->second->z * time)/2;
         }
     }
 }
