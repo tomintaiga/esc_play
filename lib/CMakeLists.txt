@@ -2,6 +2,7 @@ add_subdirectory(ecs)
 
 option(GLM_TEST_ENABLE_FAST_MATH ON)
 option(GLM_TEST_ENABLE ON)
+option(GLM_TEST_ENABLE_CXX_17 ON)
 add_subdirectory(glm)
 
 set(ECS_include ${ECS_include} PARENT_SCOPE)
