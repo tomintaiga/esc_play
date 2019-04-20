@@ -11,6 +11,7 @@
 #include <entity_manager.h>
 
 #include <boost/program_options.hpp>
+#include "game_tests.h"
 
 #include <iostream>
 
@@ -51,7 +52,7 @@ int main(int argc, const char *argv[])
         else if(vm.count("test"))
         {
             std::cout << "Runing tests" << std::endl;
-            return EXIT_SUCCESS;
+            return Test::run_tests();
         }
 
         //If no such options specified - just run program
