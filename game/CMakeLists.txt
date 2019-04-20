@@ -10,7 +10,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 find_package(OpenGL REQUIRED)                                                                      
 find_package(GLUT REQUIRED)                                                                        
 find_package(GLEW REQUIRED)
-find_package(Boost REQUIRED COMPONENTS program_options)
+find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
 
 find_package(PkgConfig REQUIRED)                                                                   
 pkg_check_modules(GLFW REQUIRED glfw3)
