@@ -10,10 +10,59 @@
 // ECS
 #include <entity_manager.h>
 
+#include <boost/program_options.hpp>
+
 #include <iostream>
 
-int main()
+/**
+ * @brief Command line arguments consts
+ * @namespace ARGS
+ */
+namespace ARGS
 {
+    const char* help_option = "help,h";
+    const char* help_descr  = "Help screen";
+    const char* test_option = "test,t";
+    const char* test_descr  = "Run tests";
+}
+
+int main(int argc, const char *argv[])
+{
+    // Check for command-line options
+    try
+    {
+        // Prepare options
+        boost::program_options::options_description desc{"Allowed options"};
+        desc.add_options()
+            (ARGS::help_option, ARGS::help_descr)
+            (ARGS::test_option, ARGS::test_descr);
+
+        // Parse them
+        boost::program_options::variables_map vm;
+        boost::program_options::store(boost::program_options::parse_command_line(argc, argv, desc), vm);
+        boost::program_options::notify(vm);
+
+        // Check what we have
+        if(vm.count("help"))
+        {
+            std::cout << desc << std::endl;
+            return EXIT_SUCCESS;
+        }
+        else if(vm.count("test"))
+        {
+            std::cout << "Runing tests" << std::endl;
+            return EXIT_SUCCESS;
+        }
+
+        //If no such options specified - just run program
+
+    }
+    catch(const boost::program_options::error& e)
+    {
+        std::cerr << e.what() << '\n';
+        return EXIT_FAILURE;
+    }
+    
     // glfw: initialize and configure
     // ------------------------------
     glfwInit();
@@ -32,7 +81,7 @@ int main()
     {
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
-        return -1;
+        return EXIT_FAILURE;
     }
     glfwMakeContextCurrent(window);
 
@@ -44,11 +93,11 @@ int main()
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
         std::cout << "Failed to initialize GLAD" << std::endl;
-        return -1;
+        return EXIT_FAILURE;
     }
 
      // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------
     glfwTerminate();
-    return 0;    
+    return EXIT_SUCCESS;    
 }
