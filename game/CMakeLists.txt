@@ -10,7 +10,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 find_package(OpenGL REQUIRED)                                                                      
 find_package(GLUT REQUIRED)                                                                        
 find_package(GLEW REQUIRED)
-find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
+find_package(Threads)
+find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework log)
 
 find_package(PkgConfig REQUIRED)                                                                   
 pkg_check_modules(GLFW REQUIRED glfw3)
@@ -37,4 +38,5 @@ target_link_libraries(EcsGame ${OPENGL_LIBRARIES}
                               ${GLAD_LIBS}
                               glm_shared
                               ${ECS_bin}
-                              ${Boost_LIBRARIES})                     
+                              ${Boost_LIBRARIES}
+                              Threads::Threads)                     
