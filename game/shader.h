@@ -30,6 +30,16 @@ public:
      */
     GLuint id() const { return _id;}
 
+    /**
+     * @brief Compile program for given shader sources
+     * 
+     * @param vertexSource Text of vertex shader
+     * @param fragmentSource Text of fragment shader
+     * 
+     * gane::Shader::id must be not 0 after this function call. If so - we got error
+     */
+    void compile(const GLchar* vertexSource, const GLchar* fragmentSource);
+
 private:
     GLuint _id;
 };
