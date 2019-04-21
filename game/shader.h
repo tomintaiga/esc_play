@@ -6,6 +6,8 @@
 #ifndef SHADER_H
 #define SHADER_H
 
+#include <GL/gl.h>
+
 namespace game
 {
 
@@ -14,9 +16,24 @@ namespace game
  */
 class Shader
 {
+public:
 
+    /**
+     * @brief Construct a new Shader object
+     */
+    Shader(): _id{} {}
+
+    /**
+     * @brief Get shader ID
+     * 
+     * @return GLuint Shader ID
+     */
+    GLuint id() const { return _id;}
+
+private:
+    GLuint _id;
 };
 
-}// namespace game
+} // namespace game
 
 #endif // SHADER_H

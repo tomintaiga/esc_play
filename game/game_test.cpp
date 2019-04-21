@@ -14,9 +14,13 @@ BOOST_AUTO_TEST_CASE(shader_constructor)
     BOOST_TEST(true);
 }
 
-BOOST_AUTO_TEST_CASE(test1)
+BOOST_AUTO_TEST_CASE(shader_id)
 {
-    BOOST_TEST(true);
+    game::Shader shader;
+
+    GLuint id = shader.id();
+
+    BOOST_TEST(id == 0);
 }
 
 int Test::run_tests()
