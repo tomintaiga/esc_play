@@ -5,6 +5,15 @@
 #define BOOST_TEST_ALTERNATIVE_INIT_API
 #include <boost/test/unit_test.hpp>
 
+#include "shader.h"
+
+BOOST_AUTO_TEST_CASE(shader_constructor)
+{
+    game::Shader shader();
+
+    BOOST_TEST(true);
+}
+
 BOOST_AUTO_TEST_CASE(test1)
 {
     BOOST_TEST(true);
@@ -12,7 +21,7 @@ BOOST_AUTO_TEST_CASE(test1)
 
 int Test::run_tests()
 {
-    char *argv[] = {"EcsGame"};
+    char *argv[] = { (char *)"EcsGame"};
     int argc = 1;
 
     return boost::unit_test::unit_test_main(&init_unit_test, argc, argv);
